@@ -1,3 +1,3 @@
-# Online schedule
+# Online scheduler
 
  
