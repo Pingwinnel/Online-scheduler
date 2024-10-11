@@ -35,7 +35,7 @@ function App() {
   const handleSignUp = (token) => {
     setIsLoggedIn(true);
   };
-  
+
   const handleLogout = () => {
     localStorage.removeItem('token');
     setIsLoggedIn(false);
@@ -52,13 +52,12 @@ function App() {
           />
           <Route 
           path="/signup" 
-          element={!isLoggedIn ? <SignUp onSignUp={handleSignUp} /> : <Navigate to="/calendar" />} 
+          element={!isLoggedIn ? <SignUp onSignUp={handleSignUp} /> : <Navigate to="/signup" />} 
           />
           <Route
             path="/calendar"
             element={isLoggedIn ? <CalendarGrid startDay={startDay} /> : <Navigate to="/login" />}
           />
-      
           <Route
             path="/"
             element={<h1>Добро пожаловать в Календарь!</h1>}

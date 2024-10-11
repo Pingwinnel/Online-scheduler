@@ -8,10 +8,9 @@ function SignUp({ onSignUp }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     
-    // Получаем существующих пользователей из localStorage
     const users = JSON.parse(localStorage.getItem('users')) || [];
 
-    // Проверяем, существует ли уже пользователь с таким email
+    // Проверяем, с уществует ли уже пользователь с таким email
     const existingUser = users.find(user => user.email === email);
     
     if (existingUser) {
