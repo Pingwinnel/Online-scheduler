@@ -23,10 +23,10 @@ const Login = () => {
       if (data.length > 0) {
         const user = data[0];
         localStorage.setItem('token', user.token); 
-        setError(''); // Сбрасываем ошибку
-        setUsername(''); // Очищаем поле ввода имени пользователя
-        setPassword(''); // Очищаем поле ввода пароля
-        navigate('/'); // Перенаправление на главную страницу
+        setError(''); 
+        setUsername('');
+        setPassword(''); 
+        navigate('/'); 
       } else {
         setError('Invalid username or password');
       }
@@ -45,14 +45,14 @@ const Login = () => {
           placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          required // Обязательное поле
+          required
         />
         <input
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          required // Обязательное поле
+          required
         />
         <button type="submit">Login</button>
         <Link to="/register"><button type="button">Register</button></Link>

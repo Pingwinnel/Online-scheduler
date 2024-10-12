@@ -10,7 +10,6 @@ const FriendsList = () => {
       const data = await response.json();
       const loggedInUser = data.find(user => user.token === token);
       
-      // Устанавливаем текущего пользователя и его список друзей
       setCurrentUser(loggedInUser);
     };
 
@@ -19,7 +18,6 @@ const FriendsList = () => {
 
   const handleRemoveFriend = async (friendId) => {
     if (currentUser) {
-      // Удаляем друга из списка друзей текущего пользователя
       const updatedFriends = currentUser.friends.filter(friend => friend.id !== friendId);
   
       await fetch(`http://localhost:5000/users/${currentUser.id}`, {
@@ -30,7 +28,6 @@ const FriendsList = () => {
         body: JSON.stringify({ friends: updatedFriends }),
       });
   
-      // Получаем данные друга, чтобы удалить текущего пользователя из его друзей
       const response = await fetch(`http://localhost:5000/users/${friendId}`);
       const friend = await response.json();
   
@@ -44,7 +41,6 @@ const FriendsList = () => {
         body: JSON.stringify({ friends: friendUpdatedFriends }),
       });
   
-      // Обновляем состояние текущего пользователя
       setCurrentUser({ ...currentUser, friends: updatedFriends });
     }
   };

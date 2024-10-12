@@ -10,8 +10,6 @@ const UsersList = () => {
       const response = await fetch('http://localhost:5000/users');
       const data = await response.json();
       const loggedInUser = data.find(user => user.token === token);
-      
-      // Устанавливаем текущего пользователя и фильтруем его из списка
       setCurrentUser(loggedInUser);
       setUsers(data.filter(user => user.id !== loggedInUser.id));
     };
@@ -22,8 +20,6 @@ const UsersList = () => {
   const handleAddFriend = async (friend) => {
     if (currentUser) {
       const updatedFriends = [...currentUser.friends, { id: friend.id, username: friend.username }];
-  
-      // Обновляем список друзей текущего пользователя
       await fetch(`http://localhost:5000/users/${currentUser.id}`, {
         method: 'PATCH',
         headers: {
@@ -32,7 +28,6 @@ const UsersList = () => {
         body: JSON.stringify({ friends: updatedFriends }),
       });
   
-      // Обновляем список друзей для другого пользователя (делаем дружбу взаимной)
       const friendUpdatedFriends = [...friend.friends, { id: currentUser.id, username: currentUser.username }];
   
       await fetch(`http://localhost:5000/users/${friend.id}`, {
@@ -43,7 +38,6 @@ const UsersList = () => {
         body: JSON.stringify({ friends: friendUpdatedFriends }),
       });
   
-      // Обновляем состояние текущего пользователя
       setCurrentUser({ ...currentUser, friends: updatedFriends });
     }
   };
@@ -57,9 +51,9 @@ const UsersList = () => {
           <li key={user.id}>
             {user.username}
             {currentUser && currentUser.friends.some(friend => friend.id === user.id) ? (
-              <span> (Добавлен)</span> // Если друг уже добавлен, показываем "Добавлен"
+              <span> (Добавлен)</span>
             ) : (
-              <button onClick={() => handleAddFriend(user)}>Add Friend</button> // Иначе кнопка "Add Friend"
+              <button onClick={() => handleAddFriend(user)}>Add Friend</button> 
             )}
           </li>
         ))}
