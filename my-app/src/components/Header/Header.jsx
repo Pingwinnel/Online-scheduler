@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from "styled-components";
+import styled from "styled-Calendar";
 
 const DivWrapper = styled('div')`
 	background-color: #2A2B2D;
@@ -10,9 +10,9 @@ const DivWrapper = styled('div')`
 
 const Header = () => {
     return (
-        <DivWrapper>
-            Header
-        </DivWrapper>
+        <div>
+
+        </div>
     );
 };
 

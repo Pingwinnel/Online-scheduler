@@ -1,0 +1,28 @@
+.days {
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+.days span {
+    font-size: clamp(1.2rem, 1cqi, 1.6rem);
+    width: calc(100% / 7);
+    display: flex;
+    aspect-ratio: 1;
+    justify-content: center;
+    align-items: center;
+    color: #ddd;
+    cursor: pointer;
+    text-shadow: 0 .5rem 1rem rgba(0, 0, 0, .5);
+
+}
+
+.no_active{
+    opacity: 0.7;
+}
+
+.current-day {
+    background-color: #ef9011;
+    box-shadow: 0 0 1.5rem 1rem rgba(239, 144, 17, 0.3);;
+    border-radius: 50%;
+}
