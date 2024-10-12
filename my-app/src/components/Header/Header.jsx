@@ -14,6 +14,7 @@ function Header({ isLoggedIn, onLogout }) {
         ) : (
           <Link to="/login">Войти</Link>
         )}
+        <Link to="/profile">Profile</Link>
       </nav>
     </header>
   );

@@ -1,58 +1,65 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
-function Login({ onLogin }) {
-  const [email, setEmail] = useState('');
+const Login = () => {
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState(null);
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    
-    // Получаем существующих пользователей из localStorage
-    const users = JSON.parse(localStorage.getItem('users')) || [];
-
-    // Проверяем пользователя по email и паролю
-    const user = users.find(user => user.email === email && user.password === password);
-
-    if (!user) {
-      setError('Неверный email или пароль.');
-      return;
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      navigate('/');
     }
+  }, [navigate]);
 
-    // Мокаем токен
-    const token = "mockLoginToken";
-    localStorage.setItem('token', token);
+  const handleLogin = async (e) => {  
+    e.preventDefault();
+    try {
+      const response = await fetch(`http://localhost:5000/users?username=${username}&password=${password}`);
+      const data = await response.json();
 
-    onLogin(token);  // Вызываем метод для авторизации
+      if (data.length > 0) {
+        const user = data[0];
+        localStorage.setItem('token', user.token); 
+        setError(''); // Сбрасываем ошибку
+        setUsername(''); // Очищаем поле ввода имени пользователя
+        setPassword(''); // Очищаем поле ввода пароля
+        navigate('/'); // Перенаправление на главную страницу
+      } else {
+        setError('Invalid username or password');
+      }
+    } catch (error) {
+      console.error('Error logging in:', error);
+      setError('Something went wrong');
+    }
   };
 
   return (
     <div>
-      <h2>Вход</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email:</label>
-          <input 
-            type="email" 
-            value={email} 
-            onChange={(e) => setEmail(e.target.value)} 
-            required 
-          />
-        </div>
-        <div>
-          <label>Пароль:</label>
-          <input 
-            type="password" 
-            value={password} 
-            onChange={(e) => setPassword(e.target.value)} 
-            required 
-          />
-        </div>
-        <button type="submit">Войти</button>
+      <h2>Login</h2>
+      <form onSubmit={handleLogin}>
+        <input
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required // Обязательное поле
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required // Обязательное поле
+        />
+        <button type="submit">Login</button>
+        <Link to="/register"><button type="button">Register</button></Link>
       </form>
+      {error && <p>{error}</p>}
     </div>
   );
-}
+};
 
 export default Login;

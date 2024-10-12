@@ -1,0 +1,140 @@
+{
+  "users": [
+    {
+      "id": "9a71",
+      "username": "Nurtileu",
+      "email": "nurt2003@mail.ru",
+      "password": "1234nurt",
+      "token": "token-Nurtileu",
+      "friends": [
+        {
+          "id": "af72",
+          "username": "Era"
+        },
+        {
+          "id": "8cc9",
+          "username": "123"
+        }
+      ]
+    },
+    {
+      "id": "af72",
+      "username": "Era",
+      "email": "123@mail.ru",
+      "password": "456",
+      "token": "token-Era",
+      "friends": [
+        {
+          "id": "9a71",
+          "username": "Nurtileu"
+        },
+        {
+          "id": "8cc9",
+          "username": "123"
+        }
+      ]
+    },
+    {
+      "id": "8cc9",
+      "username": "123",
+      "email": "123",
+      "password": "123",
+      "token": "token-123",
+      "friends": [
+        {
+          "id": "9a71",
+          "username": "Nurtileu"
+        },
+        {
+          "id": "af72",
+          "username": "Era"
+        },
+        {
+          "id": "544d",
+          "username": "123456"
+        },
+        {
+          "id": "fe7f",
+          "username": "321"
+        },
+        {
+          "id": "8041",
+          "username": "321"
+        },
+        {
+          "id": "7d70",
+          "username": "321"
+        },
+        {
+          "id": "e515",
+          "username": "153"
+        }
+      ]
+    },
+    {
+      "id": "544d",
+      "username": "123456",
+      "email": "123456",
+      "password": "123456",
+      "token": "token-123456",
+      "friends": [
+        {
+          "id": "8cc9",
+          "username": "123"
+        }
+      ]
+    },
+    {
+      "id": "fe7f",
+      "username": "321",
+      "email": "321",
+      "password": "321",
+      "token": "token-321",
+      "friends": [
+        {
+          "id": "8cc9",
+          "username": "123"
+        }
+      ]
+    },
+    {
+      "id": "8041",
+      "username": "321",
+      "email": "321",
+      "password": "321",
+      "token": "token-321",
+      "friends": [
+        {
+          "id": "8cc9",
+          "username": "123"
+        }
+      ]
+    },
+    {
+      "id": "7d70",
+      "username": "321",
+      "email": "321",
+      "password": "321",
+      "token": "token-321",
+      "friends": [
+        {
+          "id": "8cc9",
+          "username": "123"
+        }
+      ]
+    },
+    {
+      "id": "e515",
+      "username": "153",
+      "email": "153",
+      "password": "153",
+      "token": "token-153",
+      "friends": [
+        {
+          "id": "8cc9",
+          "username": "123"
+        }
+      ]
+    }
+  ]
+}
