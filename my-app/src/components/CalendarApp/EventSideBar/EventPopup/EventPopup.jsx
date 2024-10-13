@@ -3,7 +3,6 @@ import React from 'react';
 const EventPopup = ({
                         setShowEventPopup,
                         eventTime,
-                        setEventTime,
                         eventText,
                         setEventText,
                         handleEventSubmit,
@@ -33,13 +32,19 @@ const EventPopup = ({
             </div>
             <textarea placeholder={"Enter Event Text (Maximum 60 Characters"}
                       value={eventText}
-                      onChange={(e) =>
-                      {if(e.target.value.length<=60){
-                          setEventText(e.target.value)
-                      }}
+                      onChange={(e) => {
+                          if (e.target.value.length <= 60) {
+                              setEventText(e.target.value)
+                          }
+                      }
                       }></textarea>
-            <button className={'event-popup-btn'} onClick={handleEventSubmit}>
-                {editingEvent ? "Update Event" : "Add Event"}
+            <button className={'event-popup-btn'}
+                    onClick={handleEventSubmit}>
+                {editingEvent ?
+                    "Update Event"
+                    :
+                    "Add Event"
+                }
             </button>
             <button className="close-event-popup"
                     onClick={() => setShowEventPopup(false)}>

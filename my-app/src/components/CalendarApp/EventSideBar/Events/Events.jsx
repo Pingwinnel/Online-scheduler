@@ -1,6 +1,11 @@
 import React from 'react';
 
-const Events = ({events, monthsOfYear, handleEditEvent, handleDeleteEvent}) => {
+const Events = ({
+                    events,
+                    monthsOfYear,
+                    handleEditEvent,
+                    handleDeleteEvent
+                }) => {
     return (
         <>
             {
@@ -16,8 +21,10 @@ const Events = ({events, monthsOfYear, handleEditEvent, handleDeleteEvent}) => {
                         </div>
                         <div className={`event-text`}>{event.text}</div>
                         <div className="event-buttons">
-                            <i className="bx bx-edit-alt" onClick={() => handleEditEvent(event)}></i>
-                            <i className="bx bx-message-alt-x" onClick={() => handleDeleteEvent(event.id)}></i>
+                            <i className="bx bx-edit-alt"
+                               onClick={() => handleEditEvent(event)}></i>
+                            <i className="bx bx-message-alt-x"
+                               onClick={() => handleDeleteEvent(event.id)}></i>
                         </div>
                     </div>
                 ))

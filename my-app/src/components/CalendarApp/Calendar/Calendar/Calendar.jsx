@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
-import "../../Calendar.css"
+
+import "../../CalendarApp.css"
 import Header from "../Header/Header";
-import Controls from "../Controls/Controls";
 import DayGridControler from "../DayGridControler/DayGridControler";
 import WeekDay from "../Weekdays/WeekDay";
+import weekDays from "../../../utils/weekDays";
 
 
 const Calendar = ({
@@ -15,12 +15,17 @@ const Calendar = ({
                       daysInMonth,
                       handleDayClick,
                   }) => {
-    const weekDayArr = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+
+    const weekDayArr = weekDays;
 
 
     return (
         <div className="calendar">
-            <Header CurrentMonth={currentMonth} CurrentYear={currentYear} nextMonthHandler={nextMonthHandler} prevMonthHandler={prevMonthHandler}></Header>
+            <Header CurrentMonth={currentMonth}
+                    CurrentYear={currentYear}
+                    nextMonthHandler={nextMonthHandler}
+                    prevMonthHandler={prevMonthHandler}
+            ></Header>
             <WeekDay weekDayArr={weekDayArr}></WeekDay>
             <DayGridControler currentYear={currentYear}
                               currentMonth={currentMonth}

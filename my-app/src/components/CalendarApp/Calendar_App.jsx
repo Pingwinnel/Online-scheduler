@@ -9,14 +9,23 @@ const CalendarApp = () => {
     const currentDate = new Date();
     const [currentMonth, setCurrentMonth] = useState(currentDate.getMonth());
     const [currentYear, setCurrentYear] = useState(currentDate.getFullYear());
-    const daysInMonth = useMemo(()=>{return  new Date(currentYear, currentMonth + 1, 0).getDate();},[currentYear,currentMonth])
-    const FirstDayOfMonth = useMemo(()=> { return (new Date(currentYear, currentMonth, 1).getDay() + 6) % 7},[currentYear,currentMonth]);
     const [selectedDate, setSelectedDate] = useState(currentDate);
     const [showEventPopup, setShowEventPopup] = useState(false);
     const [events, setEvents] = useState([]);
     const [eventTime, setEventTime] = useState({hours: '00', minutes: '00'});
     const [eventText, setEventText] = useState("");
     const [editingEvent, setEditingEvent] = useState(null);
+
+
+
+
+    const daysInMonth = useMemo(() => {
+        return new Date(currentYear, currentMonth + 1, 0).getDate();
+    }, [currentYear, currentMonth])
+
+    const FirstDayOfMonth = useMemo(() => {
+        return (new Date(currentYear, currentMonth, 1).getDay() + 6) % 7
+    }, [currentYear, currentMonth]);
 
 
     const sortedEvents = useMemo(() => {
@@ -27,7 +36,9 @@ const CalendarApp = () => {
         const clikedDate = new Date(currentYear, currentMonth, day);
         const today = new Date();
 
-        if (clikedDate >= today || isSameDay(clikedDate, today)) {
+        if (clikedDate >= today
+            ||
+            isSameDay(clikedDate, today)) {
             setSelectedDate(clikedDate);
             setShowEventPopup(true);
             setEventTime({hours: '00', minutes: '00'});
@@ -46,7 +57,10 @@ const CalendarApp = () => {
 
     const handleEventSubmit = () => {
         const newEvent = {
-            id: editingEvent ? editingEvent.id : Date.now(),
+            id: editingEvent ?
+                editingEvent.id
+                :
+                Date.now(),
             date: selectedDate,
             time: `${eventTime.hours.padStart(2, '0')}:
             ${eventTime.minutes.padStart(2, '0')}`,
@@ -72,14 +86,12 @@ const CalendarApp = () => {
     }
 
 
-
     const handleEditEvent = (event) => {
         setSelectedDate(new Date(event.date))
         setEventTime({
-                hours: event.time.split(':').map(part=>part.trim())[0],
-                minutes: event.time.split(':').map(part=>part.trim())[1],
-            });
-        console.log(event.time.split(':'));
+            hours: event.time.split(':').map(part => part.trim())[0],
+            minutes: event.time.split(':').map(part => part.trim())[1],
+        });
         setEventText(event.text);
         setEditingEvent(event)
         setShowEventPopup(true)
@@ -107,18 +119,17 @@ const CalendarApp = () => {
             prevYear));
     }
 
-    const handleDeleteEvent=(eventId)=>{
-        const updateEvents=events.filter(event=>event.id!==eventId);
+    const handleDeleteEvent = (eventId) => {
+        const updateEvents = events.filter(event => event.id !== eventId);
         setEvents(updateEvents);
     }
 
-    const handleTimeChange=(e)=>{
+    const handleTimeChange = (e) => {
         const name = e.target.name;
         const value = e.target.value;
 
-        setEventTime((prevTime)=>({...prevTime,[name]:value.padStart(2,'0')}));
+        setEventTime((prevTime) => ({...prevTime, [name]: value.padStart(2, '0')}));
     }
-
 
 
     return (

@@ -1,8 +1,10 @@
 import React from 'react';
 
 
-
-const Controls = ({prevMonthHandler,nextMonthHandler}) => {
+const Controls = ({
+                      prevMonthHandler,
+                      nextMonthHandler
+                  }) => {
     return (
         <div className="buttons">
             <i className="bx bx-chevron-left" onClick={prevMonthHandler}></i>
