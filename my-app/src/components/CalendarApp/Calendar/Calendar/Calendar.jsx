@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import "./Calendar.css"
+import "../../Calendar.css"
 import Header from "../Header/Header";
 import Controls from "../Controls/Controls";
 import DayGridControler from "../DayGridControler/DayGridControler";
@@ -20,8 +20,7 @@ const Calendar = ({
 
     return (
         <div className="calendar">
-            <Header CurrentMonth={currentMonth} CurrentYear={currentYear}></Header>
-            <Controls nextMonthHandler={nextMonthHandler} prevMonthHandler={prevMonthHandler}></Controls>
+            <Header CurrentMonth={currentMonth} CurrentYear={currentYear} nextMonthHandler={nextMonthHandler} prevMonthHandler={prevMonthHandler}></Header>
             <WeekDay weekDayArr={weekDayArr}></WeekDay>
             <DayGridControler currentYear={currentYear}
                               currentMonth={currentMonth}

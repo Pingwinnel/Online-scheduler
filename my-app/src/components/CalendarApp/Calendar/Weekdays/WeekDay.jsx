@@ -1,5 +1,4 @@
 import React from 'react';
-import "./WeekDay.css"
 const WeekDay = ({weekDayArr}) => {
     return (
         <div className="weekdays">

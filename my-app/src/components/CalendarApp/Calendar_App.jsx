@@ -112,6 +112,13 @@ const CalendarApp = () => {
         setEvents(updateEvents);
     }
 
+    const handleTimeChange=(e)=>{
+        const name = e.target.name;
+        const value = e.target.value;
+
+        setEventTime((prevTime)=>({...prevTime,[name]:value.padStart(2,'0')}));
+    }
+
 
 
     return (
@@ -137,6 +144,7 @@ const CalendarApp = () => {
                        handleEditEvent={handleEditEvent}
                        editingEvent={editingEvent}
                        handleDeleteEvent={handleDeleteEvent}
+                       handleTimeChange={handleTimeChange}
             ></EventsApp>
         </div>
     );

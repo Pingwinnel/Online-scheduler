@@ -34,7 +34,6 @@
     font-size: clamp(4rem, 3.8cqi, 7rem);
     color: #fff;
     letter-spacing: 0.3rem;
-    padding-left: 1.3rem;
 }
 
 .navigate-date {
@@ -73,12 +72,11 @@
     width: 100%;
     display: flex;
     margin: 3rem 0;
-
 }
 
 .weekdays span {
     width: calc(100% / 7);
-    font-size: clamp(1rem, 8cqi, 1.3rem);
+    font-size: clamp(1rem, 0.8cqi, 1.3rem);
     font-weight: bold;
     text-transform: uppercase;
     color: #78879e;
@@ -90,11 +88,10 @@
 .days {
     display: flex;
     flex-wrap: wrap;
-
 }
 
 .days span {
-    font-size: clamp(1.2rem, 1cqi, 1.6rem);
+    font-size: clamp(1rem, 1cqi, 1.6rem);
     width: calc(100% / 7);
     display: flex;
     aspect-ratio: 1;
@@ -102,7 +99,7 @@
     align-items: center;
     color: #ddd;
     cursor: pointer;
-    text-shadow: 0 .5rem 1rem rgba(0, 0, 0, .5);
+    text-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
 
 }
 
@@ -120,6 +117,11 @@
     width: 60%;
     height: 100%;
     padding: 3rem 0;
+    overflow-y:auto;
+}
+
+.events::-webkit-scrollbar{
+    display: none;
 }
 
 .event-popup {
@@ -185,6 +187,10 @@
     border-radius: 0.5rem;
     color: #78879e;
     transition: border 0.5s;
+    overflow-y:auto ;
+}
+.event-popup textarea::-webkit-scrollbar {
+    display: none;
 }
 
 .event-popup textarea:focus {
@@ -247,13 +253,15 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 25%;
-    border-right: 1rem solid rgba(255, 255, 255, 0.5);
+    justify-content: center;
+    width: 28%;
+    border-right: 0.1rem solid rgba(255, 255, 255, 0.5);
 }
 
 .event-date {
     font-size: clamp(1rem, 1cqi, 1.2rem);
     color: #ddd;
+    text-align: center;
 }
 
 .event-time {
@@ -272,6 +280,7 @@
     overflow-wrap: break-word;
 }
 
+
 .event-buttons {
     position: absolute;
     top: 50%;
@@ -286,5 +295,97 @@
     font-size: 1.6rem;
     color: #fff;
     cursor: pointer;
+}
+
+
+
+@media(max-width: 850px){
+    .calendar-app{
+        flex-direction: column;
+        row-gap: 2rem;
+        aspect-ratio: 3/2;
+    }
+    .calendar{
+        width: 70%;
+        margin: auto;
+    }
+    .navigate-date{
+        margin: 1rem 0;
+    }
+
+    .weekdays{
+        margin: 1rem 0;
+    }
+    .events{
+        width: 80%;
+        margin: auto;
+    }
+
+    .event-popup{
+        top:18%;
+        left: 50%;
+        transform: translateX(-50%);
+        aspect-ratio: 4/3;
+        width: 60%;
+        row-gap: 1rem;
+    }
+
+    .event-popup-time{
+        width: clamp(5rem,10cqi,8rem);
+        font-size: clamp(1.5rem, 3cqi, 2.2rem);
+    }
+
+    .time-input input{
+        width: clamp(5rem,10cqi,8rem);
+        font-size: clamp(1.2rem, 2cqi, 1.6rem);
+    }
+
+    .event-popup textarea{
+        width: clamp(18rem,35cqi,28rem);
+    }
+
+    .event-popup textarea::placeholder{
+        font-size: clamp(1rem,1.5cqi,1.2rem);
+    }
+
+    .event-popup-btn{
+        width: clamp(18rem,35cqi,28rem);
+        font-size: clamp(1.5rem, 3cqi, 2.2rem);
+    }
+
+    .event-date{
+        font-size: clamp(1rem, 1.4cqi, 1.2rem);
+    }
+
+    .event-time{
+        font-size: clamp(1rem,2cqi,1.6rem);
+    }
+
+    .event-text{
+        font-size: clamp(1rem,2.5cqi,1.4rem);
+    }
+}
+
+@media (max-width:500px) {
+    .calendar-app{
+        aspect-ratio: 10/9;
+    }
+    .calendar{
+        width: 100%;
+    }
+    .event-popup{
+        top:23%;
+        width: 80%;
+    }
+
+    .events{
+        width: 100%;
+    }
+}
+
+@media (max-width:375px) {
+    .calendar-app{
+        aspect-ratio: 3/2;
+    }
 }
 

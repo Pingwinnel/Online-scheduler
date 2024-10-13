@@ -15,6 +15,7 @@ const EventsApp = ({
                        editingEvent,
                        handleDeleteEvent,
                        monthsOfYear,
+                       handleTimeChange,
                    }) => {
     return (
         <div className="events">
@@ -25,9 +26,14 @@ const EventsApp = ({
                                            setShowEventPopup={setShowEventPopup}
                                            handleEventSubmit={handleEventSubmit}
                                            editingEvent={editingEvent}
+                                           handleTimeChange={handleTimeChange}
             ></EventPopup>}
-            <Events events={events} monthsOfYear={monthsOfYear} handleEditEvent={handleEditEvent}
-                    handleDeleteEvent={handleDeleteEvent}></Events>
+            <Events events={events}
+                    monthsOfYear={monthsOfYear}
+                    handleEditEvent={handleEditEvent}
+                    handleDeleteEvent={handleDeleteEvent}
+                    setEventText={setEventText}
+            ></Events>
 
         </div>
     );

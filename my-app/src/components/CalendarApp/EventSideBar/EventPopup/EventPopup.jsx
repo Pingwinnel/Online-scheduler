@@ -8,6 +8,7 @@ const EventPopup = ({
                         setEventText,
                         handleEventSubmit,
                         editingEvent,
+                        handleTimeChange
                     }) => {
     return (
         <div className="event-popup">
@@ -19,11 +20,7 @@ const EventPopup = ({
                        max={24}
                        className={'hours'}
                        value={eventTime.hours}
-                       onChange={(e) =>
-                           setEventTime({
-                               ...eventTime,
-                               hours: e.target.value
-                           })}
+                       onChange={handleTimeChange}
                 />
                 <input type={'number'}
                        name={'minutes'}
@@ -31,18 +28,15 @@ const EventPopup = ({
                        max={60}
                        className={'minutes'}
                        value={eventTime.minutes}
-                       onChange={(e) =>
-                           setEventTime({
-                               ...eventTime,
-                               minutes: e.target.value
-                           })}
+                       onChange={handleTimeChange}
                 />
             </div>
             <textarea placeholder={"Enter Event Text (Maximum 60 Characters"}
                       value={eventText}
-                      onChange={(e) => {
+                      onChange={(e) =>
+                      {if(e.target.value.length<=60){
                           setEventText(e.target.value)
-                      }
+                      }}
                       }></textarea>
             <button className={'event-popup-btn'} onClick={handleEventSubmit}>
                 {editingEvent ? "Update Event" : "Add Event"}

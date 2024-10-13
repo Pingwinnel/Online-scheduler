@@ -1,5 +1,5 @@
 import React from 'react';
-import "./DayGridController.css"
+
 import moment from "moment";
 
 const DayGridControler = ({ currentYear,
