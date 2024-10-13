@@ -1,18 +1,26 @@
 import React from 'react';
 
-const Events = () => {
+const Events = ({events,monthsOfYear,handleEditEvent,handleDeleteEvent}) => {
     return (
-        <div className="event">
-            <div className="event-date-wrapper">
-                <div className="event-date">May 15,2024</div>
-                <div className="event-time">10:00</div>
-            </div>
-            <div className="event-text">Meeting with Friends</div>
-            <div className="event-buttons">
-                <i className="bx bx-edit-alt"></i>
-                <i className="bx bx-message-alt-x"></i>
-            </div>
-        </div>
+        <>
+        {events.map((event,index)=> (
+                <div className="event" key={index}>
+                    <div className="event-date-wrapper">
+                        <div className="event-date">{`
+                        ${monthsOfYear[event.date.getMonth()]}
+                        ${event.date.getDate()},
+                        ${event.date.getFullYear()}`}</div>
+                        <div className="event-time">{event.time}</div>
+                    </div>
+                    <div className="event-text">{event.text}</div>
+                    <div className="event-buttons">
+                        <i className="bx bx-edit-alt" onClick={()=>handleEditEvent(event)}></i>
+                        <i className="bx bx-message-alt-x" onClick={()=>handleDeleteEvent(event.id)}></i>
+                    </div>
+                </div>
+            ))
+        }
+</>
     );
 };
 
