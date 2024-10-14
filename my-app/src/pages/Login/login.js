@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import './login.css';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -37,27 +38,38 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={handleLogin}>
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button type="submit">Login</button>
-        <Link to="/register"><button type="button">Register</button></Link>
-      </form>
-      {error && <p>{error}</p>}
+    <div className="container">
+      <div className="login-form">
+        <h2>Login</h2>
+        <form onSubmit={handleLogin}>
+          <label htmlFor="username">Username</label>
+          <input
+            className="label_login"
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+          <label htmlFor="password">Password</label>
+          <input
+            className="label_login"
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          {error && <p>{error}</p>}
+          <button type="submit">Login</button>
+          <p><a href="#">Forgot password?</a></p>
+        </form>
+      </div>
+      <div className="welcome-section">
+        <h2>Welcome to the system</h2>
+        <p>Don't have an account?</p>
+        <Link to="/register" class="welcome_reg">Register</Link>
+      </div>
     </div>
   );
 };

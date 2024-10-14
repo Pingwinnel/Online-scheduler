@@ -6,7 +6,32 @@
       "email": "nurt2003@mail.ru",
       "password": "1234nurt",
       "token": "token-Nurtileu",
-      "friends": []
+      "friends": [
+        {
+          "id": "af72",
+          "username": "Era"
+        },
+        {
+          "id": "8cc9",
+          "username": "123"
+        },
+        {
+          "id": "fe7f",
+          "username": "321"
+        },
+        {
+          "id": "7d70",
+          "username": "321"
+        },
+        {
+          "id": "e515",
+          "username": "153"
+        },
+        {
+          "id": "1271",
+          "username": "Yernur"
+        }
+      ]
     },
     {
       "id": "af72",
@@ -14,7 +39,12 @@
       "email": "123@mail.ru",
       "password": "456",
       "token": "token-Era",
-      "friends": []
+      "friends": [
+        {
+          "id": "9a71",
+          "username": "Nurtileu"
+        }
+      ]
     },
     {
       "id": "8cc9",
@@ -22,7 +52,12 @@
       "email": "123",
       "password": "123",
       "token": "token-123",
-      "friends": []
+      "friends": [
+        {
+          "id": "9a71",
+          "username": "Nurtileu"
+        }
+      ]
     },
     {
       "id": "544d",
@@ -38,7 +73,12 @@
       "email": "321",
       "password": "321",
       "token": "token-321",
-      "friends": []
+      "friends": [
+        {
+          "id": "9a71",
+          "username": "Nurtileu"
+        }
+      ]
     },
     {
       "id": "8041",
@@ -54,7 +94,12 @@
       "email": "321",
       "password": "321",
       "token": "token-321",
-      "friends": []
+      "friends": [
+        {
+          "id": "9a71",
+          "username": "Nurtileu"
+        }
+      ]
     },
     {
       "id": "e515",
@@ -62,8 +107,27 @@
       "email": "153",
       "password": "153",
       "token": "token-153",
-      "friends": []
+      "friends": [
+        {
+          "id": "9a71",
+          "username": "Nurtileu"
+        }
+      ]
+    },
+    {
+      "id": "1271",
+      "username": "Yernur",
+      "email": "123@mail.ru",
+      "password": "123456",
+      "token": "token-Yernur",
+      "friends": [
+        {
+          "id": "9a71",
+          "username": "Nurtileu"
+        }
+      ]
     }
   ],
   "event": []
+  
 }
