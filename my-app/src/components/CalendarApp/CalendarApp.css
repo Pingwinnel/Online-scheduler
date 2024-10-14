@@ -64,7 +64,7 @@
     justify-content: center;
     align-items: center;
     font-size: 2rem;
-    color: #c97f1a;
+    color: white;
     cursor: pointer;
 }
 
@@ -393,4 +393,5 @@
         aspect-ratio: 3/2;
     }
 }
+
 

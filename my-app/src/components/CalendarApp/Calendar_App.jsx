@@ -1,9 +1,11 @@
-import React, {useMemo, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import Calendar from "./Calendar/Calendar/Calendar";
 import EventsApp from "./EventSideBar/EventsApp";
 import monthOfYear from "../utils/monthOfYear";
+import {NavLink, useNavigate} from "react-router-dom";
+import Login from "../../pages/Login/login";
 
-const CalendarApp = () => {
+const CalendarApp = ({handleBackButton}) => {
     const [today, setToday] = useState();
     const monthsOfYear = monthOfYear
     const currentDate = new Date();
@@ -15,6 +17,12 @@ const CalendarApp = () => {
     const [eventTime, setEventTime] = useState({hours: '00', minutes: '00'});
     const [eventText, setEventText] = useState("");
     const [editingEvent, setEditingEvent] = useState(null);
+
+
+
+
+
+
 
 
 
@@ -132,33 +140,67 @@ const CalendarApp = () => {
     }
 
 
-    return (
-        <div className={"calendar-app"}>
-            <Calendar currentDate={currentDate}
-                      nextMonthHandler={nextMonthHandler}
-                      prevMonthHandler={prevMonthHandler}
-                      currentYear={currentYear}
-                      currentMonth={currentMonth + 1}
-                      firstDayOfMonth={FirstDayOfMonth}
-                      daysInMonth={daysInMonth}
-                      handleDayClick={handleDayClick}
-            ></Calendar>
-            <EventsApp eventTime={eventTime}
-                       eventText={eventText}
-                       setEventText={setEventText}
-                       setEventTime={setEventTime}
-                       showEventPopup={showEventPopup}
-                       setShowEventPopup={setShowEventPopup}
-                       handleEventSubmit={handleEventSubmit}
-                       events={events}
-                       monthsOfYear={monthsOfYear}
-                       handleEditEvent={handleEditEvent}
-                       editingEvent={editingEvent}
-                       handleDeleteEvent={handleDeleteEvent}
-                       handleTimeChange={handleTimeChange}
-            ></EventsApp>
+
+
+
+
+
+    const token = localStorage.getItem('token');
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            navigate('/');
+        }
+    }, [navigate]);
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        navigate('/login');
+    };
+
+
+    return <>{token ? (
+        <><div className={"calendar-app-wrapper"}>
+            <div className={"calendar-app-header"}>
+                <div className={"LogOut_btn_wrapper"}>
+                    <button className={"LogOut_btn"} onClick={handleLogout}>Logout</button>
+                </div>
+            </div>
+            <div className={"calendar-app"}>
+                <Calendar currentDate={currentDate}
+                          nextMonthHandler={nextMonthHandler}
+                          prevMonthHandler={prevMonthHandler}
+                          currentYear={currentYear}
+                          currentMonth={currentMonth + 1}
+                          firstDayOfMonth={FirstDayOfMonth}
+                          daysInMonth={daysInMonth}
+                          handleDayClick={handleDayClick}
+                          handleLogout={handleLogout}
+                ></Calendar>
+                <EventsApp eventTime={eventTime}
+                           eventText={eventText}
+                           setEventText={setEventText}
+                           setEventTime={setEventTime}
+                           showEventPopup={showEventPopup}
+                           setShowEventPopup={setShowEventPopup}
+                           handleEventSubmit={handleEventSubmit}
+                           events={events}
+                           monthsOfYear={monthsOfYear}
+                           handleEditEvent={handleEditEvent}
+                           editingEvent={editingEvent}
+                           handleDeleteEvent={handleDeleteEvent}
+                           handleTimeChange={handleTimeChange}
+                ></EventsApp>
+            </div>
         </div>
-    );
+        </>
+    ) : (
+        <Login handleBackButton={handleBackButton} ></Login>
+    )}
+    </>
+
 };
 
 export default CalendarApp;
