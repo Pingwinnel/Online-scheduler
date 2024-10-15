@@ -1,0 +1,50 @@
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    font-size: px;
+}
+
+h1 {
+    color: white; /* Цвет текста заголовка */
+    margin-bottom: 20px; /* Отступ снизу */
+}
+
+.nav-list {
+    list-style: none; /* Убираем маркеры списка */
+    padding: 0; /* Убираем отступы */
+}
+
+.nav-link {
+    display: block; /* Делаем ссылки блочными элементами */
+    background-color: black; /* Цвет фона ссылок */
+    color: white; /* Цвет текста ссылок */
+    text-align: center; /* Центрирование текста */
+    padding: 15px 30px; /* Отступы для ссылок */
+    margin: 10px 0; /* Отступы между ссылками */
+    text-decoration: none; /* Убираем подчеркивание */
+    width: 200px; /* Фиксированная ширина */
+}
+
+.nav-link:hover {
+    background-color: white; /* Цвет фона при наведении */
+    color: black; /* Цвет текста при наведении */
+}
+
+.logout-button {
+    background-color: black; /* Цвет фона кнопки выхода */
+    color: white; /* Цвет текста кнопки выхода */
+    border: none; /* Убираем рамку */
+    padding: 15px 30px; /* Отступы для кнопки выхода */
+    cursor: pointer; /* Курсор при наведении */
+    width: 200px; /* Фиксированная ширина */
+    margin-top: 10px; /* Отступ сверху */
+}
+
+.logout-button:hover {
+    background-color: white; /* Цвет фона кнопки выхода при наведении */
+    color: black; /* Цвет текста кнопки выхода при наведении */
+}

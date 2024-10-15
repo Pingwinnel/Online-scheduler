@@ -1,12 +1,12 @@
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {useCallback, useMemo, useState} from 'react';
 import Calendar from "./Calendar/Calendar/Calendar";
 import EventsApp from "./EventSideBar/EventsApp";
 import monthOfYear from "../utils/monthOfYear";
-import {NavLink, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import Login from "../../pages/Login/login";
 
 const CalendarApp = ({handleBackButton}) => {
-    const [today, setToday] = useState();
+    // const [today, setToday] = useState();
     const monthsOfYear = monthOfYear
     const currentDate = new Date();
     const [currentMonth, setCurrentMonth] = useState(currentDate.getMonth());
@@ -17,15 +17,6 @@ const CalendarApp = ({handleBackButton}) => {
     const [eventTime, setEventTime] = useState({hours: '00', minutes: '00'});
     const [eventText, setEventText] = useState("");
     const [editingEvent, setEditingEvent] = useState(null);
-
-
-
-
-
-
-
-
-
 
     const daysInMonth = useMemo(() => {
         return new Date(currentYear, currentMonth + 1, 0).getDate();
@@ -40,21 +31,19 @@ const CalendarApp = ({handleBackButton}) => {
         return [...events].sort((a, b) => new Date(a.date) - new Date(b.date));
     }, [events]);
 
-    const handleDayClick = (day) => {
-        const clikedDate = new Date(currentYear, currentMonth, day);
+    const handleDayClick = useCallback((day) => {
+        const clickedDate = new Date(currentYear, currentMonth, day);
         const today = new Date();
-
-        if (clikedDate >= today
-            ||
-            isSameDay(clikedDate, today)) {
-            setSelectedDate(clikedDate);
+    
+        if (clickedDate >= today || isSameDay(clickedDate, today)) {
+            setSelectedDate(clickedDate);
             setShowEventPopup(true);
-            setEventTime({hours: '00', minutes: '00'});
-            setEventText('')
-            setEditingEvent(null)
+            setEventTime({ hours: '00', minutes: '00' });
+            setEventText('');
+            setEditingEvent(null);
         }
-    }
-
+    }, [currentYear, currentMonth]);
+    
     const isSameDay = (date1, date2) => {
         return (
             date1.getFullYear() === date2.getFullYear() &&
@@ -63,75 +52,56 @@ const CalendarApp = ({handleBackButton}) => {
         )
     }
 
-    const handleEventSubmit = () => {
+    const handleEventSubmit = useCallback(() => {
         const newEvent = {
-            id: editingEvent ?
-                editingEvent.id
-                :
-                Date.now(),
+            id: editingEvent ? editingEvent.id : Date.now(),
             date: selectedDate,
-            time: `${eventTime.hours.padStart(2, '0')}:
-            ${eventTime.minutes.padStart(2, '0')}`,
+            time: `${eventTime.hours.padStart(2, '0')}:${eventTime.minutes.padStart(2, '0')}`,
             text: eventText,
-        }
-
-        let updatedEvents = [...events]
-
+        };
+    
+        let updatedEvents = [...events];
         if (editingEvent) {
-            updatedEvents = updatedEvents.map((event) =>
+            updatedEvents = updatedEvents.map(event =>
                 event.id === editingEvent.id ? newEvent : event
-            )
-
+            );
         } else {
-            updatedEvents.push(newEvent)
+            updatedEvents.push(newEvent);
         }
-
+    
         setEvents(updatedEvents);
-        setEventText("")
-        setEventTime({hours: '00', minutes: '00'});
-        setShowEventPopup(false)
-        setEditingEvent(null)
-    }
-
-
-    const handleEditEvent = (event) => {
-        setSelectedDate(new Date(event.date))
+        setEventText("");
+        setEventTime({ hours: '00', minutes: '00' });
+        setShowEventPopup(false);
+        setEditingEvent(null);
+    }, [editingEvent, selectedDate, eventTime, eventText, events]);
+    
+    const handleEditEvent = useCallback((event) => {
+        setSelectedDate(new Date(event.date));
         setEventTime({
-            hours: event.time.split(':').map(part => part.trim())[0],
-            minutes: event.time.split(':').map(part => part.trim())[1],
+            hours: event.time.split(':')[0].trim(),
+            minutes: event.time.split(':')[1].trim(),
         });
         setEventText(event.text);
-        setEditingEvent(event)
-        setShowEventPopup(true)
-    }
-
-
-    const prevMonthHandler = () => {
-        setCurrentMonth(prevMonth => (prevMonth === 0 ?
-            11
-            :
-            prevMonth - 1));
-        setCurrentYear(prevYear => (currentMonth === 0 ?
-            prevYear - 1
-            :
-            prevYear));
-    }
-    const nextMonthHandler = () => {
-        setCurrentMonth(prevMonth => (prevMonth === 11 ?
-            0
-            :
-            prevMonth + 1));
-        setCurrentYear(prevYear => (currentMonth === 11 ?
-            prevYear + 1
-            :
-            prevYear));
-    }
-
-    const handleDeleteEvent = (eventId) => {
-        const updateEvents = events.filter(event => event.id !== eventId);
-        setEvents(updateEvents);
-    }
-
+        setEditingEvent(event);
+        setShowEventPopup(true);
+    }, []);
+    
+    const prevMonthHandler = useCallback(() => {
+        setCurrentMonth(prevMonth => (prevMonth === 0 ? 11 : prevMonth - 1));
+        setCurrentYear(prevYear => (currentMonth === 0 ? prevYear - 1 : prevYear));
+    }, [currentMonth]);
+    
+    const nextMonthHandler = useCallback(() => {
+        setCurrentMonth(prevMonth => (prevMonth === 11 ? 0 : prevMonth + 1));
+        setCurrentYear(prevYear => (currentMonth === 11 ? prevYear + 1 : prevYear));
+    }, [currentMonth]);
+    
+    const handleDeleteEvent = useCallback((eventId) => {
+        const updatedEvents = events.filter(event => event.id !== eventId);
+        setEvents(updatedEvents);
+    }, [events]);
+    
     const handleTimeChange = (e) => {
         const name = e.target.name;
         const value = e.target.value;
@@ -139,35 +109,11 @@ const CalendarApp = ({handleBackButton}) => {
         setEventTime((prevTime) => ({...prevTime, [name]: value.padStart(2, '0')}));
     }
 
-
-
-
-
-
-
     const token = localStorage.getItem('token');
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const token = localStorage.getItem('token');
-        if (token) {
-            navigate('/');
-        }
-    }, [navigate]);
-
-    const handleLogout = () => {
-        localStorage.removeItem('token');
-        navigate('/login');
-    };
-
-
     return <>{token ? (
         <><div className={"calendar-app-wrapper"}>
-            <div className={"calendar-app-header"}>
-                <div className={"LogOut_btn_wrapper"}>
-                    <button className={"LogOut_btn"} onClick={handleLogout}>Logout</button>
-                </div>
-            </div>
             <div className={"calendar-app"}>
                 <Calendar currentDate={currentDate}
                           nextMonthHandler={nextMonthHandler}
@@ -177,7 +123,6 @@ const CalendarApp = ({handleBackButton}) => {
                           firstDayOfMonth={FirstDayOfMonth}
                           daysInMonth={daysInMonth}
                           handleDayClick={handleDayClick}
-                          handleLogout={handleLogout}
                 ></Calendar>
                 <EventsApp eventTime={eventTime}
                            eventText={eventText}

@@ -1,9 +1,8 @@
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import  classes from "./Home.module.css";
-import Calendar_App from "../../components/CalendarApp/Calendar_App";
+import './Home.css'; 
 
-const Home = ({handleBackButton }) => {
+const Home = ({ handleBackButton }) => {
     const token = localStorage.getItem('token');
     const navigate = useNavigate();
 
@@ -13,29 +12,32 @@ const Home = ({handleBackButton }) => {
     };
 
     return (
-        <div>
-            <h1>Welcome to the User Management System</h1>
+        <div className="home-container">
+            <h1>Welcome to the Calendar app</h1>
             <nav>
-                <ul>
+                <ul className="nav-list">
                     {token ? (
                         <>
                             <li>
-                                <NavLink to="/users">Users List</NavLink>
+                                <NavLink to="/users" className="nav-link">Users List</NavLink>
                             </li>
                             <li>
-                                <NavLink to="/friends">Friends List</NavLink>
+                                <NavLink to="/friends" className="nav-link">Friends List</NavLink>
                             </li>
                             <li>
-                                <button onClick={handleLogout}>Logout</button>
+                                <NavLink to="/calendar" className="nav-link">Calendar App</NavLink>
+                            </li>
+                            <li>
+                                <button onClick={handleLogout} className="logout-button">Logout</button>
                             </li>
                         </>
                     ) : (
                         <>
                             <li>
-                                <NavLink to="/login">Login</NavLink>
+                                <NavLink to="/login" className="nav-link">Login</NavLink>
                             </li>
                             <li>
-                                <NavLink to="/register">Register</NavLink>
+                                <NavLink to="/register" className="nav-link">Register</NavLink>
                             </li>
                         </>
                     )}
