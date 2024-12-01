@@ -1,11 +1,14 @@
 import React from 'react';
+import monthOfYear from "../../../utils/monthOfYear";
 
 const Events = ({
                     events,
-                    monthsOfYear,
                     handleEditEvent,
                     handleDeleteEvent
                 }) => {
+
+    const monthsOfYear = monthOfYear
+
     return (
         <>
             {

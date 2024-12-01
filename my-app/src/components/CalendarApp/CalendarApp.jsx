@@ -4,32 +4,18 @@ import EventsApp from "./EventSideBar/EventsApp";
 import monthOfYear from "../utils/monthOfYear";
 import {useNavigate} from "react-router-dom";
 import Login from "../../pages/Login/login";
+import {useDispatch, useSelector} from "react-redux";
 
 const CalendarApp = ({handleBackButton}) => {
-    // const [today, setToday] = useState();
-    const monthsOfYear = monthOfYear
-    const currentDate = new Date();
-    const [currentMonth, setCurrentMonth] = useState(currentDate.getMonth());
-    const [currentYear, setCurrentYear] = useState(currentDate.getFullYear());
-    const [selectedDate, setSelectedDate] = useState(currentDate);
+    const { currentMonth, currentYear} = useSelector((state) => state.calendar);
+    const [selectedDate, setSelectedDate] = useState(new Date());
     const [showEventPopup, setShowEventPopup] = useState(false);
     const [events, setEvents] = useState([]);
     const [eventTime, setEventTime] = useState({hours: '00', minutes: '00'});
     const [eventText, setEventText] = useState("");
     const [editingEvent, setEditingEvent] = useState(null);
 
-    const daysInMonth = useMemo(() => {
-        return new Date(currentYear, currentMonth + 1, 0).getDate();
-    }, [currentYear, currentMonth])
 
-    const FirstDayOfMonth = useMemo(() => {
-        return (new Date(currentYear, currentMonth, 1).getDay() + 6) % 7
-    }, [currentYear, currentMonth]);
-
-
-    const sortedEvents = useMemo(() => {
-        return [...events].sort((a, b) => new Date(a.date) - new Date(b.date));
-    }, [events]);
 
     const handleDayClick = useCallback((day) => {
         const clickedDate = new Date(currentYear, currentMonth, day);
@@ -87,16 +73,7 @@ const CalendarApp = ({handleBackButton}) => {
         setShowEventPopup(true);
     }, []);
     
-    const prevMonthHandler = useCallback(() => {
-        setCurrentMonth(prevMonth => (prevMonth === 0 ? 11 : prevMonth - 1));
-        setCurrentYear(prevYear => (currentMonth === 0 ? prevYear - 1 : prevYear));
-    }, [currentMonth]);
-    
-    const nextMonthHandler = useCallback(() => {
-        setCurrentMonth(prevMonth => (prevMonth === 11 ? 0 : prevMonth + 1));
-        setCurrentYear(prevYear => (currentMonth === 11 ? prevYear + 1 : prevYear));
-    }, [currentMonth]);
-    
+
     const handleDeleteEvent = useCallback((eventId) => {
         const updatedEvents = events.filter(event => event.id !== eventId);
         setEvents(updatedEvents);
@@ -110,20 +87,11 @@ const CalendarApp = ({handleBackButton}) => {
     }
 
     const token = localStorage.getItem('token');
-    const navigate = useNavigate();
 
     return <>{token ? (
         <><div className={"calendar-app-wrapper"}>
             <div className={"calendar-app"}>
-                <Calendar currentDate={currentDate}
-                          nextMonthHandler={nextMonthHandler}
-                          prevMonthHandler={prevMonthHandler}
-                          currentYear={currentYear}
-                          currentMonth={currentMonth + 1}
-                          firstDayOfMonth={FirstDayOfMonth}
-                          daysInMonth={daysInMonth}
-                          handleDayClick={handleDayClick}
-                ></Calendar>
+                <Calendar handleDayClick={handleDayClick}></Calendar>
                 <EventsApp eventTime={eventTime}
                            eventText={eventText}
                            setEventText={setEventText}
@@ -132,7 +100,6 @@ const CalendarApp = ({handleBackButton}) => {
                            setShowEventPopup={setShowEventPopup}
                            handleEventSubmit={handleEventSubmit}
                            events={events}
-                           monthsOfYear={monthsOfYear}
                            handleEditEvent={handleEditEvent}
                            editingEvent={editingEvent}
                            handleDeleteEvent={handleDeleteEvent}

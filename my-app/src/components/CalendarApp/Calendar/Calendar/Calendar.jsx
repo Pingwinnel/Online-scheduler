@@ -4,36 +4,17 @@ import Header from "../Header/Header";
 import DayGridControler from "../DayGridControler/DayGridControler";
 import WeekDay from "../Weekdays/WeekDay";
 import weekDays from "../../../utils/weekDays";
+import {useDispatch} from "react-redux";
 
 
-const Calendar = ({
-                      currentDate,
-                      nextMonthHandler,
-                      prevMonthHandler,
-                      currentYear, currentMonth,
-                      firstDayOfMonth,
-                      daysInMonth,
-                      handleDayClick,
-                  }) => {
-
-    const weekDayArr = weekDays;
+const Calendar = ({handleDayClick,}) => {
 
 
     return (
         <div className="calendar">
-            <Header CurrentMonth={currentMonth}
-                    CurrentYear={currentYear}
-                    nextMonthHandler={nextMonthHandler}
-                    prevMonthHandler={prevMonthHandler}
-            ></Header>
-            <WeekDay weekDayArr={weekDayArr}></WeekDay>
-            <DayGridControler currentYear={currentYear}
-                              currentMonth={currentMonth}
-                              currentDate={currentDate}
-                              firstDayOfMonth={firstDayOfMonth}
-                              daysInMonth={daysInMonth}
-                              handleDayClick={handleDayClick}
-            ></DayGridControler>
+            <Header></Header>
+            <WeekDay ></WeekDay>
+            <DayGridControler handleDayClick={handleDayClick}></DayGridControler>
         </div>
     );
 };

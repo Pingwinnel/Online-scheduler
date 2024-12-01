@@ -1,19 +1,23 @@
 import React, { useState, useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const FriendsList = ({handleBackButton}) => {
     const [currentUser, setCurrentUser] = useState(null);
     const token = localStorage.getItem('token');
+   const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-        const fetchCurrentUser = async () => {
-            const response = await fetch('http://localhost:5000/users');
-            const data = await response.json();
-            const loggedInUser = data.find(user => user.token === token);
 
-            setCurrentUser(loggedInUser);
-        };
-
+            const fetchCurrentUser = async () => {
+                const response = await fetch('http://localhost:5000/users');
+                const data = await response.json();
+                const loggedInUser = data.find(user => user.token === token);
+                setCurrentUser(loggedInUser);
+        }
         fetchCurrentUser();
+
     }, [token]);
 
     const handleRemoveFriend = async (friendId) => {
