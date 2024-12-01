@@ -1,13 +1,13 @@
 import React from 'react';
 import monthOfYear from "../../../utils/monthOfYear";
+import {useDispatch, useSelector} from "react-redux";
+import {DeleteEvent, handleEditEvent} from "../../../../store/eventsSlice";
 
-const Events = ({
-                    events,
-                    handleEditEvent,
-                    handleDeleteEvent
-                }) => {
+const Events = () => {
 
     const monthsOfYear = monthOfYear
+    const dispatch = useDispatch();
+    const events=useSelector((state) => state.events.events);
 
     return (
         <>
@@ -25,9 +25,9 @@ const Events = ({
                         <div className={`event-text`}>{event.text}</div>
                         <div className="event-buttons">
                             <i className="bx bx-edit-alt"
-                               onClick={() => handleEditEvent(event)}></i>
+                               onClick={() => dispatch(handleEditEvent(event))}></i>
                             <i className="bx bx-message-alt-x"
-                               onClick={() => handleDeleteEvent(event.id)}></i>
+                               onClick={() => dispatch(DeleteEvent(event.id))}></i>
                         </div>
                     </div>
                 ))

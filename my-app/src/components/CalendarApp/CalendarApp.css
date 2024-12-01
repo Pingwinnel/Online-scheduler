@@ -86,7 +86,7 @@
 
 .weekdays span {
     width: calc(100% / 7);
-    font-size: clamp(1rem, 0.8cqi, 1.3rem);
+    font-size: clamp(1rem, 0.8cqi, 1.8rem);
     font-weight: bold;
     text-transform: uppercase;
     color: #78879e;
@@ -103,7 +103,7 @@
 }
 
 .days span {
-    font-size: clamp(1.5rem, 1.8cqi, 3rem);
+    font-size: clamp(1.5rem, 1.8cqi, 2.5rem);
     width: calc(100% / 7);
     display: flex;
     aspect-ratio: 1;

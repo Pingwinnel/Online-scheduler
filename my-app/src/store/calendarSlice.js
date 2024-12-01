@@ -1,12 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-
 const initialState = {
     currentMonth: new Date().getMonth(),
     currentYear: new Date().getFullYear(),
 };
 
-// Slice
 const calendarSlice = createSlice({
     name: 'calendar',
     initialState,
@@ -31,9 +29,8 @@ const calendarSlice = createSlice({
 });
 
 export const { prevMonthHandler, nextMonthHandler } = calendarSlice.actions;
-export default calendarSlice.reducer;
 
-
+// Selectors
 export const selectDaysInMonth = (state) => {
     const { currentYear, currentMonth } = state.calendar;
     return new Date(currentYear, currentMonth + 1, 0).getDate();
@@ -43,3 +40,5 @@ export const selectFirstDayOfMonth = (state) => {
     const { currentYear, currentMonth } = state.calendar;
     return (new Date(currentYear, currentMonth, 1).getDay() + 6) % 7;
 };
+
+export default calendarSlice.reducer;
