@@ -12,10 +12,6 @@
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
-
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
-
     <title>Calendar App</title>
   </head>
   <body>
@@ -31,5 +27,20 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+  <script>
+    if ("serviceWorker" in navigator && "SyncManager" in window) {
+      navigator.serviceWorker.ready.then((swRegistration) => {
+        swRegistration.sync.register("sync-post-data");
+      });
+    }
+
+    Notification.requestPermission().then((permission) => {
+      if (permission === "granted") {
+        console.log("Push notifications are allowed!");
+      }
+    });
+
+
+  </script>
   </body>
 </html>
