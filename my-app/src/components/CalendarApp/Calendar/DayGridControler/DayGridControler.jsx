@@ -40,14 +40,12 @@ const DayGridController = () => {
 
     return (
         <div className="days">
-            {/* Previous month's days */}
             {[...Array(firstDayOfMonth).keys()].map((_, index) => (
                 <span key={`prev-${index}`} className={"no_active"}>
                     {prevMonthDays - firstDayOfMonth + index + 1}
                 </span>
             ))}
 
-            {/* Current month's days */}
             {[...Array(daysInMonth).keys()].map((day) => (
                 <span
                     key={day + 1}

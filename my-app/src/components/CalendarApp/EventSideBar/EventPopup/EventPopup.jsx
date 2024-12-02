@@ -36,7 +36,6 @@ const EventPopup = () => {
             updatedEvents.push(newEvent);
         }
 
-        // Dispatch updates
         dispatch(setEvents(updatedEvents));
         dispatch(setEventText(""));
         dispatch(setEventTime({ hours: '00', minutes: '00' }));

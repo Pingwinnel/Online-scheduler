@@ -30,7 +30,7 @@ const calendarSlice = createSlice({
 
 export const { prevMonthHandler, nextMonthHandler } = calendarSlice.actions;
 
-// Selectors
+
 export const selectDaysInMonth = (state) => {
     const { currentYear, currentMonth } = state.calendar;
     return new Date(currentYear, currentMonth + 1, 0).getDate();
