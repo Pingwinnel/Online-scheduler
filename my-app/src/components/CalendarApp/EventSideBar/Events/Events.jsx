@@ -7,7 +7,9 @@ const Events = () => {
 
     const monthsOfYear = monthOfYear
     const dispatch = useDispatch();
-    const events=useSelector((state) => state.events.events);
+    const events = useSelector(state => state.events.events || []);
+
+    if (!events.length) return <p>No events available</p>;
 
     return (
         <>
