@@ -254,7 +254,7 @@
 
 .event {
     width: 100%;
-    height: clamp(7rem, 5cqi, 10rem);
+    height: clamp(7rem, 5cqi, 18rem);
     background-color: #00a3ff;
     padding: 1.5rem 0;
     border-radius: 1rem;
@@ -262,6 +262,7 @@
     align-items: center;
     margin-bottom: 2rem;
     position: relative;
+
 }
 
 .event-date-wrapper {
@@ -310,6 +311,26 @@
     font-size: 1.6rem;
     color: #fff;
     cursor: pointer;
+}
+
+.no-event__message{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    height: 100%;
+    font-size: clamp(1.3rem, 1cqi, 4rem);
+}
+.event__FriendList__wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal{
+    height: 10vh;
+    z-index: 1000;
 }
 
 

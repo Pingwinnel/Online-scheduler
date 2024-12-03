@@ -1,47 +1,66 @@
 import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from "react-redux";
+import { v4 as uuidv4 } from 'uuid';
 import {
+    addEventToDB, fetchUserEvents,
     setEditingEvent,
-    setEvents,
     setEventText,
     setEventTime,
-    setShowEventPopup
+    setShowEventPopup, updateEventInDB
 } from "../../../../store/eventsSlice";
 
 const EventPopup = () => {
     const dispatch = useDispatch();
-    const { selectedDate, eventTime, editingEvent, eventText, events } = useSelector(state => state.events);
+    const { selectedDate, eventTime, editingEvent, eventText } = useSelector(state => state.events);
 
     const handleTimeChange = (e) => {
-        const name = e.target.name;
-        const value = e.target.value;
+        const { name, value } = e.target;
 
-        dispatch(setEventTime({ ...eventTime, [name]: value.padStart(2, '0') }));
+        let intValue = parseInt(value, 10);
+
+        if (name === "hours") {
+            intValue = Math.max(0, Math.min(23, intValue));
+        } else if (name === "minutes") {
+            intValue = Math.max(0, Math.min(59, intValue));
+        }
+
+        dispatch(setEventTime({
+            ...eventTime,
+            [name]: intValue.toString().padStart(2, '0'),
+        }));
     };
+
+    const handleBlur = (e) => {
+        const { name, value } = e.target;
+        if (!value) {
+            dispatch(setEventTime({
+                ...eventTime,
+                [name]: "00",
+            }));
+        }
+    };
+
+    const currentUser = useSelector((state) => state.auth.currentUser);
 
     const handleEventSubmit = useCallback(() => {
         const newEvent = {
-            id: editingEvent ? editingEvent.id : Date.now(),
+            id: editingEvent ? editingEvent.id : uuidv4(),
+            userId: currentUser.id,
             date: selectedDate,
             time: `${eventTime.hours.padStart(2, '0')}:${eventTime.minutes.padStart(2, '0')}`,
             text: eventText,
+            events: []
         };
 
-        let updatedEvents = [...events];
         if (editingEvent) {
-            updatedEvents = updatedEvents.map(event =>
-                event.id === editingEvent.id ? newEvent : event
-            );
+            dispatch(updateEventInDB(newEvent));
         } else {
-            updatedEvents.push(newEvent);
+            dispatch(addEventToDB(newEvent))
         }
 
-        dispatch(setEvents(updatedEvents));
-        dispatch(setEventText(""));
-        dispatch(setEventTime({ hours: '00', minutes: '00' }));
         dispatch(setShowEventPopup(false));
-        dispatch(setEditingEvent(null));
-    }, [dispatch, editingEvent, selectedDate, eventTime, eventText, events]);
+    }, [dispatch, currentUser, selectedDate, eventTime, eventText, editingEvent]);
+
 
     return (
         <div className="event-popup">
@@ -51,19 +70,25 @@ const EventPopup = () => {
                     type="number"
                     name="hours"
                     min={0}
-                    max={24}
+                    max={23}
+                    maxLength={2}
+                    step={1}
                     className="hours"
                     value={eventTime.hours}
                     onChange={handleTimeChange}
+                    onBlur={handleBlur}
                 />
                 <input
                     type="number"
                     name="minutes"
                     min={0}
-                    max={60}
+                    max={59}
+                    maxLength={2}
+                    step={1}
                     className="minutes"
                     value={eventTime.minutes}
                     onChange={handleTimeChange}
+                    onBlur={handleBlur}
                 />
             </div>
             <textarea

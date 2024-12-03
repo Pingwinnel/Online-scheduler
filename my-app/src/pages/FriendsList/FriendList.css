@@ -1,0 +1,94 @@
+.cont__friendlist {
+    background-color: #2c3542;
+    padding: 20px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 450px;
+    margin: 5% auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow-y: scroll;
+}
+
+.cont__friendlist::-webkit-scrollbar {
+display: none;
+}
+
+.friendlist__title {
+    font-size: 2.2rem;
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.friendlist__list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.friendlist__listItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #000000;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    color: #fff;
+    font-size: 1.6rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.friendlist__listItem button {
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.4rem;
+    transition: background-color 0.3s ease;
+}
+
+.friendlist__listItem button:hover {
+    background-color: #2c3542;
+}
+
+.friendlist__button {
+    display: block;
+    margin: 25px auto;
+    padding: 12px 25px;
+    background-color: #000000;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.6rem;
+    transition: background-color 0.3s ease;
+}
+
+.friendlist__button:hover {
+    background-color: #fa0000;
+}
+
+@media (max-width: 500px) {
+    html {
+        font-size: 55%;
+    }
+
+    .cont__friendlist {
+        max-width: 90%;
+    }
+
+    .friendlist__title {
+        font-size: 1.8rem;
+    }
+
+    .friendlist__listItem {
+        font-size: 1.4rem;
+    }
+
+    .friendlist__button {
+        font-size: 1.4rem;
+        padding: 10px 20px;
+    }
+}
