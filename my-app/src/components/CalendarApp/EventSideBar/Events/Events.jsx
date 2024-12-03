@@ -9,7 +9,7 @@ const Events = () => {
     const dispatch = useDispatch();
     const events = useSelector(state => state.events.events || []);
 
-    if (!events.length) return <p>No events available</p>;
+    if (!events.length) return <div className={"no-event__message"}>No events available</div>;
 
     return (
         <>

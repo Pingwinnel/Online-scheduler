@@ -312,6 +312,15 @@
     cursor: pointer;
 }
 
+.no-event__message{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    height: 100%;
+    font-size: clamp(1.3rem, 1cqi, 4rem);
+}
+
 
 @media (max-width: 850px) {
     .calendar-app {
