@@ -1,0 +1,252 @@
+{
+  "users": [
+    {
+      "id": "9a71",
+      "username": "Nurtileu",
+      "email": "nurt2003@mail.ru",
+      "password": "1234nurt",
+      "token": "token-Nurtileu",
+      "friends": [
+        {
+          "id": "8cc9",
+          "username": "123"
+        },
+        {
+          "id": "fe7f",
+          "username": "321"
+        },
+        {
+          "id": "7d70",
+          "username": "321"
+        },
+        {
+          "id": "e515",
+          "username": "153"
+        },
+        {
+          "id": "1271",
+          "username": "Yernur"
+        },
+        {
+          "id": "af72",
+          "username": "Era"
+        }
+      ],
+      "events": [
+        {
+          "id": "82b13923-efc3-401e-8c88-d3d6a7e34045",
+          "userId": "af72",
+          "date": "2024-12-13T19:00:00.000Z",
+          "time": "00:00",
+          "text": "sese",
+          "events": []
+        }
+      ]
+    },
+    {
+      "id": "af72",
+      "username": "Era",
+      "email": "123@mail.ru",
+      "password": "456",
+      "token": "token-Era",
+      "friends": [
+        {
+          "id": "544d",
+          "username": "123456"
+        },
+        {
+          "id": "9a71",
+          "username": "Nurtileu"
+        }
+      ],
+      "events": [
+        {
+          "id": "0c4a8198-de0b-47a2-bbf4-11449c48a1d0",
+          "userId": "544d",
+          "date": "2024-12-04T19:00:00.000Z",
+          "time": "00:00",
+          "text": "",
+          "events": []
+        }
+      ]
+    },
+    {
+      "id": "8cc9",
+      "username": "123",
+      "email": "123",
+      "password": "123",
+      "token": "token-123",
+      "friends": [
+        {
+          "id": "9a71",
+          "username": "Nurtileu"
+        }
+      ],
+      "events": []
+    },
+    {
+      "id": "544d",
+      "username": "123456",
+      "email": "123456",
+      "password": "123456",
+      "token": "token-123456",
+      "friends": [
+        {
+          "id": "af72",
+          "username": "Era"
+        }
+      ],
+      "events": [
+        {
+          "id": "0c4a8198-de0b-47a2-bbf4-11449c48a1d0",
+          "userId": "544d",
+          "date": "2024-12-04T19:00:00.000Z",
+          "time": "00:00",
+          "text": "",
+          "events": []
+        },
+        {
+          "id": "fb7a86fa-7dc2-4feb-8c06-bee7480f1519",
+          "userId": "544d",
+          "date": "2024-12-12T19:00:00.000Z",
+          "time": "00:00",
+          "text": "sssss",
+          "events": []
+        },
+        {
+          "id": "08ba5cba-39b6-44ce-930c-a7cb63c38dd8",
+          "userId": "544d",
+          "date": "2024-12-06T19:00:00.000Z",
+          "time": "00:00",
+          "text": "",
+          "events": []
+        },
+        {
+          "id": "6afe628f-a332-4d6f-b860-fff7b6cff3bf",
+          "userId": "544d",
+          "date": "2024-12-13T19:00:00.000Z",
+          "time": "00:00",
+          "text": "",
+          "events": []
+        },
+        {
+          "id": "f808df4b-902a-4cb9-bc8d-55b162d9a896",
+          "userId": "544d",
+          "date": "2024-12-14T19:00:00.000Z",
+          "time": "00:00",
+          "text": "",
+          "events": []
+        },
+        {
+          "id": "6513714a-aad5-45e2-ae71-24b5076a09c6",
+          "userId": "544d",
+          "date": "2024-12-14T19:00:00.000Z",
+          "time": "00:00",
+          "text": "",
+          "events": []
+        }
+      ]
+    },
+    {
+      "id": "fe7f",
+      "username": "321",
+      "email": "321",
+      "password": "321",
+      "token": "token-321",
+      "friends": [
+        {
+          "id": "9a71",
+          "username": "Nurtileu"
+        }
+      ],
+      "events": []
+    },
+    {
+      "id": "8041",
+      "username": "321",
+      "email": "321",
+      "password": "321",
+      "token": "token-321",
+      "friends": [],
+      "events": []
+    },
+    {
+      "id": "7d70",
+      "username": "321",
+      "email": "321",
+      "password": "321",
+      "token": "token-321",
+      "friends": [
+        {
+          "id": "9a71",
+          "username": "Nurtileu"
+        }
+      ],
+      "events": []
+    },
+    {
+      "id": "e515",
+      "username": "153",
+      "email": "153",
+      "password": "153",
+      "token": "token-153",
+      "friends": [
+        {
+          "id": "9a71",
+          "username": "Nurtileu"
+        }
+      ],
+      "events": []
+    },
+    {
+      "id": "1271",
+      "username": "Yernur",
+      "email": "123@mail.ru",
+      "password": "123456",
+      "token": "token-Yernur",
+      "friends": [
+        {
+          "id": "9a71",
+          "username": "Nurtileu"
+        }
+      ],
+      "events": []
+    },
+    {
+      "id": "ef92",
+      "username": "EraTest1",
+      "email": "Eratest@gmail.com",
+      "password": "Eratest123",
+      "token": "token-EraTest1",
+      "friends": [],
+      "events": []
+    },
+    {
+      "id": "2d15",
+      "username": "Era123",
+      "email": "Era123@gmail.com",
+      "password": "Era123",
+      "token": "token-Era123",
+      "friends": [],
+      "events": [
+        {
+          "id": "d9925003-75d3-4c23-8528-48e272410610",
+          "userId": "2d15",
+          "date": "2024-12-04T19:00:00.000Z",
+          "time": "00:00",
+          "text": "sadasdwqdwad ssssssssssssssss",
+          "events": []
+        }
+      ]
+    },
+    {
+      "id": "393f",
+      "username": "wdas",
+      "email": "sad@gmail.com",
+      "password": "wdas123",
+      "token": "token-wdas",
+      "friends": [],
+      "events": []
+    }
+  ]
+}
