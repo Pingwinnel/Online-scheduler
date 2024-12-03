@@ -1,0 +1,64 @@
+/* Modal Background */
+.modal-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);  /* semi-transparent black background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;  /* Ensure the modal is above other content */
+}
+
+/* Modal Content */
+.cont__friendlist {
+    background-color: #1f1f1f;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 400px;
+    width: 100%;
+    max-height: 400px; /* Optional: limit the height of the modal */
+    overflow-y: auto;  /* Make content scrollable if it overflows */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+}
+
+/* Title */
+.friendlist__title {
+    font-size: 24px;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+/* List Items */
+.friendlist__list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.friendlist__listItem {
+    padding: 10px;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.friendlist__button {
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
+    font-size: 16px;
+}
+
+.friendlist__button:hover {
+    background-color: #ff3b3b;
+}
